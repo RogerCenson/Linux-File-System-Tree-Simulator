@@ -1,11 +1,14 @@
-// #ifndef __MAIN_H__
-#define __MAIN_H__
+#ifndef MAIN_H
+#define MAIN_H
+
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+
+#include "tree.h"
+#include "commands.h"
 
 #define NO_ERROR 0
 #define ERROR -1
-
-
-void main();
+#endif //MAIN_H
