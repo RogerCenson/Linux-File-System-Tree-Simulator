@@ -5,7 +5,7 @@ int initialize_tree(NODE *node){
 	node->child=NULL;
 	node->sibiling=NULL;
 	if (node->name == NULL)
-		return ERROR;
+		return -1;
 	else
-		return NO_ERROR;
+		return 0;
 }
