@@ -6,6 +6,7 @@
 
 typedef struct node{
 	char name[64];
+	struct node *father;
 	struct node *sibiling;
 	struct node *child;
 }NODE;

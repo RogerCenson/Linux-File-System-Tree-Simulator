@@ -15,16 +15,19 @@ void main(){
 		return;
 	}
 	while(1){
+
 		printf("\nEnter command\n");
 
 		fgets(line, 128, stdin);  // get an input line
 		line[strlen(line)-1] = 0; // kill \n at end
+		sscanf(line, "%s %s", command, name); // extract name string and id value
 
 		if (line[0] == 0){ // break out on empty input line
-			break;
-		} 
-		sscanf(line, "%s %s", command, name); // extract name string and id value
-		if (!strcmp(command,"mkdir")){
+		}
+		else if (!strcmp(command,"exit")){ // end program
+			return;
+		}  
+		else if (!strcmp(command,"mkdir")){
 			p = (NODE *)malloc(sizeof(NODE));
 			strcpy(p->name,name);
 			p->sibiling=NULL;
@@ -32,10 +35,21 @@ void main(){
 			mkdir(current,p);
 		}
 		else if (!strcmp(command,"ls")){
-			ls(current);
+			if (!strcmp(name,""))
+				ls(current);
+			else{
+				NODE *q =malloc(sizeof(NODE));
+				memcpy(q,current,sizeof(NODE));
+				q=cd(myFileSystem,q,name);
+				ls(q);
+			}
 		}
 		else if (!strcmp(command,"cd")){
-			current=cd(current,name);
+	      	current=cd(myFileSystem, current, name);
+		}	
+		else if (!strcmp(command,"pwd")){
+			pwd(current);
 		}
+		memset(&name[0], 0, sizeof(name));
 	}
 }
