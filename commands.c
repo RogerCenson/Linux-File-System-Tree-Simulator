@@ -128,3 +128,29 @@ int pwd(NODE *tree){
     	return 0;
     }
 }
+
+int find(NODE *tree, char *name){
+	int error=0;
+	QUEUE* q = createQueue();
+	NODE* temp; 
+	enQueue(q, tree); 
+
+
+	while(!error){
+		temp=q->front->current;
+		if (temp!=NULL){
+			if (temp->sibiling!=NULL){
+				enQueue(q, temp->sibiling); 
+			}
+			if(temp->child!=NULL){
+				enQueue(q, temp->child); 
+			}
+			if(!strcmp(temp->name,name)){
+				pwd(temp);
+				printf("\n");
+			}
+		}
+		error=deQueue(q);
+	}	
+	return 0;
+}

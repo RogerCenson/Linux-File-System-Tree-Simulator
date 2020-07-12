@@ -50,6 +50,9 @@ void main(){
 		else if (!strcmp(command,"pwd")){
 			pwd(current);
 		}
+		else if (!strcmp(command,"find")){
+			find(current, name);
+		}
 		memset(&name[0], 0, sizeof(name));
 	}
 }
